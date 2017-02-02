@@ -21,3 +21,4 @@ for target in targetList:
         if row['EXTERNALID'] == target:
             print row['RECORDID']
     #print 'not found'
+    #wodivjwoivj
