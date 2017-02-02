@@ -1,8 +1,10 @@
 '''
 Created on 2 Feb 2017
-
+This file is not supposed to be run from within Eclipse. It is to be called with chimera. Please use execChimera.py for this.
 @author: dghosh
 '''
+print 'This file is not supposed to be run from within Eclipse. It is to be called with chimera. Please use execChimera.py for this.'
+
 import os
 import chimera
 from chimera import runCommand
