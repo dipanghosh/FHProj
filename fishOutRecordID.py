@@ -3,6 +3,8 @@ Created on 1 Feb 2017
 
 @author: dghosh
 '''
+import time
+start_time = time.time()
 import os
 import csv
 from numpy.lib.utils import _dictlist
@@ -21,4 +23,4 @@ for target in targetList:
         if row['EXTERNALID'] == target:
             print row['RECORDID']
     #print 'not found'
-    #wodivjwoivj
+print("--- %s seconds ---" % (time.time() - start_time))
