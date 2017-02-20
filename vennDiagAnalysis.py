@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-import numpy as np
 from matplotlib_venn import venn3, venn3_circles
 
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/411ActiveSIDList') as f:

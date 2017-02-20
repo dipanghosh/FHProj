@@ -7,7 +7,6 @@ import time
 start_time = time.time()
 import os
 import csv
-from numpy.lib.utils import _dictlist
 csvfile =  open('/Users/dghosh/Desktop/1006OChem.csv', 'rU')
 reader = csv.reader(csvfile)  # The reader object is a python generator, so for iterating over many times, it must be locally cached
 with open('/Users/dghosh/Desktop/exclusion') as f:
