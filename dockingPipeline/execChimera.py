@@ -5,7 +5,7 @@ Created on 2 Feb 2017
 '''
 import os
 from shutil import copyfile
-import randomFileChoose
+from dockingPipeline import randomFileChoose
 pdbDir = randomFileChoose.randomSelDir
 
 os.chdir(pdbDir)

@@ -4,7 +4,7 @@ Created on 23 Feb 2017
 @author: dghosh
 '''
 import shutil,os,sys
-import runVinaSim
+from dockingPipeline import runVinaSim
 os.chdir(runVinaSim.resultDir)
 for filename in os.listdir("."):
     filenameNew = filename[:-11]+"pdb"

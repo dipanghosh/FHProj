@@ -11,7 +11,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import threading
 from multiprocessing import Pool
-import pathCollections as pc
+from dockingPipeline import pathCollections as pc
 
 outputdir = pc.pdbOutputDir
 pc.createFolder(outputdir)

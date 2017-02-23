@@ -5,7 +5,7 @@ Created on 21 Feb 2017
 '''
 import os,random
 from shutil import copyfile
-import pathCollections as pc
+from dockingPipeline import pathCollections as pc
 targetDir = pc.pdbDir
 randomSelDir = pc.randomSelDir
 pc.createFolder(randomSelDir)

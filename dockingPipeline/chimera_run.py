@@ -10,7 +10,7 @@ import os, sys
 import chimera
 from chimera import runCommand
 sys.path.append("/Users/dghosh/Documents/workspace/FSH")
-import pathCollections as pc
+from dockingPipeline import pathCollections as pc
 #inputdir = ''
 outputdir = pc.dockPrepOutputdir
 doneDir = pc.prepDoneDir
