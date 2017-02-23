@@ -4,14 +4,17 @@ Created on 30 Jan 2017
 20 Feb 2017:: Added Multithreading
 '''
 
-outputdir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/output/'
+
 import os
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
 import threading
 from multiprocessing import Pool
+import pathCollections as pc
 
+outputdir = pc.pdbOutputDir
+pc.createFolder(outputdir)
 def extractSavePdb(outputdir, mol):
     '''
     Takes one molecule at a time from a given moleculeSet, tries to optimise and writes it off as a PDB file
@@ -31,10 +34,10 @@ def minBabel(filename):
     print(os.getcwd())
     os.system('/usr/local/bin/obminimize -ff -ff Ghemical -cg -n 2500 -c 1.0E-5 -cut -rvdw6.0 -rele 10.0 -pf 10 ./output/' + filename + ' > ./3D_minBabel/' + filename)
 
-os.mkdir(outputdir)
+pc.createFolder(outputdir)
 os.chdir(outputdir)
 os.chdir("../")
-os.mkdir('3D_minBabel')
+pc.createFolder('3D_minBabel')
 moleculeSet = Chem.SDMolSupplier("/Users/dghosh/Downloads/2276416762553814740.sdf")
 
 #Iterarate over moleculeSet, Generate one thread per molecule. Multithreading in order to process loads quickly...
