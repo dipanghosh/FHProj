@@ -4,14 +4,16 @@ Created on 23 Feb 2017
 @author: dghosh
 '''
 import os
-pdbOutputDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/output/'
-pdbDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/3D_minBabel/'
-dockPrepOutputdir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/vinaDockPrep/'
-prepDoneDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/vinaprepDonePdb/'
-prepErrorDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/vinaprepErrorPdb/'
-randomSelDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/randomSelection/'
-vinaOutputDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/finalVinaOutput/'
-vinaDoneDir = "/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/actives/vinaDoneDir/"
+basepath = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/'
+subpath = 'actives/'
+pdbOutputDir = basepath+subpath+'output/'
+pdbDir = basepath+ subpath+'3D_minBabel/'
+dockPrepOutputdir = basepath+ subpath+'vinaDockPrep/'
+prepDoneDir = basepath+ subpath+'vinaprepDonePdb/'
+prepErrorDir = basepath+ subpath+'vinaprepErrorPdb/'
+randomSelDir = basepath+ subpath+'randomSelection/'
+vinaOutputDir = basepath+ subpath+'finalVinaOutput/'
+vinaDoneDir = basepath+ subpath+'vinaDoneDir/'
 def createFolder(path):
     if not os.path.exists(path):
         os.makedirs(path)

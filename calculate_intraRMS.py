@@ -14,8 +14,8 @@ def getRmsdAvg(filename):
 import os
 import pymol
 from pymol import cmd
-from dockingPipeline import runVinaSim
-targetDir = runVinaSim.resultDir
+from dockingPipeline import pathCollections as pc
+targetDir = pc.vinaOutputDir
 os.chdir(targetDir)
 pymol.finish_launching()
 for filename in os.listdir("."):
