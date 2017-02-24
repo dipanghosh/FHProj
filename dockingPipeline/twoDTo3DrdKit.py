@@ -6,7 +6,6 @@ Created on 30 Jan 2017
 
 
 import os
-import rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
 import threading
@@ -38,7 +37,7 @@ pc.createFolder(outputdir)
 os.chdir(outputdir)
 os.chdir("../")
 pc.createFolder('3D_minBabel')
-moleculeSet = Chem.SDMolSupplier("/Users/dghosh/Downloads/2276416762553814740.sdf")
+moleculeSet = Chem.SDMolSupplier("/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/AID1006/1006_active_molecules_combined.sdf")
 
 #Iterarate over moleculeSet, Generate one thread per molecule. Multithreading in order to process loads quickly...
 for mol in moleculeSet:

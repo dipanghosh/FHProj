@@ -4,13 +4,14 @@ Created on 30 Jan 2017
 @author: dghosh
 '''
 import os
+from dockingPipeline import pathCollections as pc
 #import chimera_run
-resultDir = "/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/finalVinaOutput/"
-if not os.path.exists(resultDir):
-    os.makedirs(resultDir)
-inputdir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/vinaDockPrep/'
-pdbDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/vinaprepDonePdb/'
-vinaDoneDir = "/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/vinaDoneDir/"
+resultDir = pc.vinaOutputDir
+pc.createFolder(resultDir)
+inputdir = pc.dockPrepOutputdir
+pdbDir = pc.prepDoneDir
+vinaDoneDir = pc.vinaDoneDir
+pc.createFolder(vinaDoneDir)
 if __name__ == "__main__":
     for filename in os.listdir(pdbDir):
         #print filename[:-4]

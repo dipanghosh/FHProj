@@ -7,7 +7,7 @@ def getRmsdAvg(filename):
     cmd.load(filename)
     rmsdarray = cmd.intra_rms_cur(filename[:-6], 1)
     rmsdAvg = (sum(rmsdarray) + 1.0) / len(rmsdarray)
-    cmd.delete(filename[:-6])
+    #cmd.delete(filename[:-6])
     return rmsdAvg
 # import __main__
 # __main__.pymol_argv = [ 'pymol', '-qc']

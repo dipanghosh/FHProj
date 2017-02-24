@@ -5,9 +5,9 @@ Created on 2 Feb 2017
 '''
 import os
 from shutil import copyfile
-from dockingPipeline import randomFileChoose
-pdbDir = randomFileChoose.randomSelDir
+from dockingPipeline import pathCollections as pc
+pdbDir = pc.pdbDir
 
 os.chdir(pdbDir)
-copyfile('/Users/dghosh/Documents/workspace/FSH/chimera_run.py','chimera_run.py')
+copyfile('/Users/dghosh/Documents/workspace/FSH/dockingPipeline/chimera_run.py','chimera_run.py')
 os.system('/Applications/Chimera.app/Contents/MacOS/chimera --nogui chimera_run.py')
