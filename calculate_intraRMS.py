@@ -13,12 +13,15 @@ def getRmsdAvg(filename):
 # __main__.pymol_argv = [ 'pymol', '-qc']
 import os
 import pymol
+import random
 from pymol import cmd
 from dockingPipeline import pathCollections as pc
 targetDir = pc.vinaOutputDir
 os.chdir(targetDir)
 pymol.finish_launching()
-for filename in os.listdir("."):
+#for filename in os.listdir("."):
+filenames = random.sample(os.listdir("."), 100)
+for filename in filenames:
 #filename = "14718841.ouput.pdbqt"
     rmsdAvg = getRmsdAvg(filename)
     print rmsdAvg
