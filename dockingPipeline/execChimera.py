@@ -6,7 +6,7 @@ Created on 2 Feb 2017
 import os
 from shutil import copyfile
 from dockingPipeline import pathCollections as pc
-pdbDir = pc.pdbDir
+pdbDir = pc.randomSelDir
 
 os.chdir(pdbDir)
 copyfile('/Users/dghosh/Documents/workspace/FSH/dockingPipeline/chimera_run.py','chimera_run.py')
