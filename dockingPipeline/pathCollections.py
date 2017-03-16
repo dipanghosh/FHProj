@@ -5,7 +5,7 @@ Created on 23 Feb 2017
 '''
 import os
 basepath = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/'
-subpath = 'inactives/'
+subpath = 'actives/'
 pdbOutputDir = basepath+subpath+'output/'
 pdbDir = basepath+ subpath+'3D_minBabel/'
 dockPrepOutputdir = basepath+ subpath+'vinaDockPrep/'

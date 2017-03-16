@@ -4,9 +4,12 @@ Created on 23 Feb 2017
 @author: dghosh
 '''
 import shutil,os,sys
-from dockingPipeline import runVinaSim
-os.chdir(runVinaSim.resultDir)
+from dockingPipeline import pathCollections as pc
+os.chdir(pc.vinaOutputDir)
 for filename in os.listdir("."):
     filenameNew = filename[:-11]+"pdb"
-    print(runVinaSim.pdbDir+filenameNew)
-    #os.rename(runVinaSim.pdbDir+filenameNew, "/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/inactives/vinaDoneDir/"+filenameNew)
+    print(pc.pdbDir+filenameNew)
+    try:
+        os.rename(pc.prepDoneDir+filenameNew, pc.vinaDoneDir+filenameNew)
+    except:
+        pass

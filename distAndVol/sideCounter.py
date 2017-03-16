@@ -1,16 +1,20 @@
 '''
 Created on 3 Mar 2017
 @author: dghosh
+
+
+
 '''
-# import __main__
-# __main__.pymol_argv = [ 'pymol', '-qc']
+import __main__
+__main__.pymol_argv = [ 'pymol', '-qc']
 import os
 import numpy as np
 import pymol
 from pymol import cmd
 import matplotlib.pyplot as plt
 from dockingPipeline import pathCollections as pc
-from pprint import pprint
+#from pprint import pprint
+import pickle
 def determineSide(inputFile, centerpos, normalvector):
     dot2Dlist = []
     for i in range(1, cmd.count_states(inputFile.split(".")[0])):
@@ -48,6 +52,13 @@ def getCountAndPerc(superListAtomwise):
         if insideperc:
             avgPercInside.append(np.mean(insideperc))
     return avgAtomInside, avgPercInside
+def getPheDist(np, cmd, superDistList, lenList, avgList, inputFile, tempdistArray):
+    superDistList.append(tempdistArray)
+    if isinstance(tempdistArray, np.ndarray):
+        lenList.append(len(tempdistArray))
+        avgList.append(np.mean(tempdistArray))
+    cmd.delete(inputFile.split(".")[0] + "*")
+
 os.chdir(pc.basepath)
 centerpos = np.array((12.5, 36.7,8.3))
 pointa = np.array([15.18700027,36.02099991,3.9849999 ])
@@ -66,19 +77,20 @@ pseudoAtomCoord = cmd.get_coords("phem")
 for inputFile in os.listdir(pc.vinaOutputDir):
     if inputFile.endswith(".pdbqt"):
         cmd.load(pc.vinaOutputDir+inputFile)
-        #superListAtomwise.append(determineSide(inputFile, centerpos, normalvector)) #Get atom wise indication as to which side of the pocket it is, write them off to a list
+        superListAtomwise.append(determineSide(inputFile, centerpos, normalvector)) #Get atom wise indication as to which side of the pocket it is, write them off to a list
         tempdistArray = np.array(determineDist(inputFile, pseudoAtomCoord)).mean(axis = 0)
-        superDistList.append(tempdistArray)
-        if isinstance(tempdistArray, np.ndarray):
-            lenList.append(len(tempdistArray))
-            avgList.append(np.mean(tempdistArray))
-        cmd.delete(inputFile.split(".")[0]+"*")
-# explicitCountList, percList = getCountAndPerc(superListAtomwise) #Read from that earlier list and calculate fractions of molecules INSIDE, averaged over their poses.
+        getPheDist(np, cmd, superDistList, lenList, avgList, inputFile, tempdistArray)
+explicitCountList, percList = getCountAndPerc(superListAtomwise) #Read from that earlier list and calculate fractions of molecules INSIDE, averaged over their poses.
 cmd.quit()
-plt.hist(lenList, bins = 100)
-plt.show()
-plt.hist(avgList, bins = 100)
-plt.show()
+with open('perclist_actives', 'wb') as fp:
+    pickle.dump(percList, fp)
+with open('distlist_actives', 'wb') as fp:
+    pickle.dump(avgList, fp)
+print 'done.'
+# plt.hist(percList, bins = 100)
+# plt.show()
+# plt.hist(avgList, bins = 100)
+# plt.show()
 
                     
                 
