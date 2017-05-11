@@ -30,7 +30,7 @@ def minBabel(filename):
     '''
     Minimizes one molecule at a time through OpenBabel
     '''
-    print(os.getcwd())
+    #print(os.getcwd())
     os.system('/usr/local/bin/obminimize -ff -ff Ghemical -cg -n 2500 -c 1.0E-5 -cut -rvdw6.0 -rele 10.0 -pf 10 ./output/' + filename + ' > ./3D_minBabel/' + filename)
 
 pc.createFolder(outputdir)

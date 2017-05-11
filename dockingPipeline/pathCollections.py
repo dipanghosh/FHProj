@@ -4,16 +4,20 @@ Created on 23 Feb 2017
 @author: dghosh
 '''
 import os
-basepath = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/'
-subpath = 'actives/'
+basepath = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/strFromCorina/'
+subpath = 'inactives/'
 pdbOutputDir = basepath+subpath+'output/'
-pdbDir = basepath+ subpath+'3D_minBabel/'
+sdfdir = basepath+ subpath +"sdf/"
+pdbDir = basepath+subpath+"pdb/"
 dockPrepOutputdir = basepath+ subpath+'vinaDockPrep/'
 prepDoneDir = basepath+ subpath+'vinaprepDonePdb/'
 prepErrorDir = basepath+ subpath+'vinaprepErrorPdb/'
 randomSelDir = basepath+ subpath+'randomSelection/'
-vinaOutputDir = basepath+ subpath+'finalVinaOutput/'
+vinaOutputDir = basepath+ subpath+'vinaoutput/'
 vinaDoneDir = basepath+ subpath+'vinaDoneDir/'
+processErrorDir = basepath+ subpath+ 'processError/'
 def createFolder(path):
     if not os.path.exists(path):
         os.makedirs(path)
+        
+        

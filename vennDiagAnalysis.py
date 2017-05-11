@@ -1,17 +1,17 @@
 from matplotlib import pyplot as plt
 from matplotlib_venn import venn3, venn3_circles
 
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/411ActiveSIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/411ActiveSIDList') as f:
     list411 = f.read().splitlines()
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/1006ActiveSIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/1006ActiveSIDList') as f:
     list1006 = f.read().splitlines()
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/588342ActiveSIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/588342ActiveSIDList') as f:
     list588342 = f.read().splitlines()
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/411SIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/411SIDList') as f:
     listAll411 = f.read().splitlines()
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/1006SIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/1006SIDList') as f:
     listAll1006 = f.read().splitlines()
-with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/588342SIDList') as f:
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/588342SIDList') as f:
     listAll588342 = f.read().splitlines()
 
 #print list588342
@@ -37,11 +37,11 @@ allTwiceHits = twiceHitNotin1006|twiceHitNotin411|notin588342  #including the 12
 reproducibleMembers = allTwiceHits|hitForThree  #These are having 2/2 or 3/3 hits, 12 of them have 2/3, but counting them as false negetives.
 printcount(reproducibleMembers)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
-
+printcount(set.union(set(listAll1006),set(listAll411),set(listAll588342)))
 #print(len(hitForThree))
 #print(len(uniquein588342))
 #print(len(onlyin1006))
 
 
-#venn3([set1006, set588342, set411], ('AID1006', 'AID588342', 'AID411'))
-#plt.show()
+venn3([set(listAll1006), set(listAll588342), set(listAll411)], ('AID1006', 'AID588342', 'AID411'))
+plt.show()
