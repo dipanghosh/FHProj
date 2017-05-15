@@ -5,7 +5,7 @@ Created on 23 Feb 2017
 '''
 import os
 basepath = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/Docking/strFromCorina/'
-subpath = 'inactives/'
+subpath = 'actives/'
 pdbOutputDir = basepath+subpath+'output/'
 sdfdir = basepath+ subpath +"sdf/"
 pdbDir = basepath+subpath+"pdb/"

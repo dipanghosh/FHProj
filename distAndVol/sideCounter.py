@@ -8,6 +8,7 @@ Created on 3 Mar 2017
 
 
 import __main__
+from dockingPipeline.pathCollections import subpath
 #from distAndVol.determineCutoff import percList
 __main__.pymol_argv = [ 'pymol', '-qc']
 import os
@@ -43,6 +44,7 @@ def determineDist(inputFile, pseudoAtomCoord):
         #print dist2Dlist
     return dist2Dlist
 def getCountAndPerc(superListAtomwise):
+    counter = 0
     avgAtomInside = {}
     avgPercInside = {}
     for moleculeID, atomwiseSideList in superListAtomwise.items():
@@ -56,6 +58,9 @@ def getCountAndPerc(superListAtomwise):
             avgAtomInside[moleculeID]=(np.mean(insideAtomCount))
         if insideperc:
             avgPercInside[moleculeID]=(np.mean(insideperc))
+        counter = counter+1
+        print "Processing complete for"+moleculeID,
+        print (str((float(counter)/len(superListAtomwise))*100)+"% done")        
     return avgAtomInside, avgPercInside
 def getPheDist(np, cmd, superDistList, lenList, avgList, inputFile, tempdistArray):
     superDistList.append(tempdistArray)
@@ -96,16 +101,16 @@ for inputFile in os.listdir(pc.vinaOutputDir):
     processMolecules(os, pc, centerpos, np, normalvector, cmd, superListAtomwise, superDistList, lenList, avgList, pseudoAtomCoord, inputFile)
     processcount = processcount + 1
     print processcount
-print superListAtomwise
+#print superListAtomwise
 explicitCountList, percDict = getCountAndPerc(superListAtomwise) #Read from that earlier list and calculate fractions of molecules INSIDE, averaged over their poses.
 cmd.quit()
 percList = []
 for v in percDict.values():
     percList.append(v)
     
-with open('perclist_actives', 'wb') as fp:
+with open(subpath+'perclist_actives', 'wb') as fp:
     pickle.dump(percDict, fp)
-with open('distlist_actives', 'wb') as fp:
+with open(subpath+'distlist_actives', 'wb') as fp:
     pickle.dump(avgList, fp)
 print 'done.'
 #plt.hist(percList, bins = 100)

@@ -43,5 +43,5 @@ printcount(set.union(set(listAll1006),set(listAll411),set(listAll588342)))
 #print(len(onlyin1006))
 
 
-venn3([set(listAll1006), set(listAll588342), set(listAll411)], ('AID1006', 'AID588342', 'AID411'))
+venn3([set(list1006), set(list588342), set(list411)], ('AID1006', 'AID588342', 'AID411'))
 plt.show()
