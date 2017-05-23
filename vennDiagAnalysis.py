@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from matplotlib_venn import venn3, venn3_circles
+from matplotlib_venn import venn3, venn3_circles, venn2
 
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/411ActiveSIDList') as f:
     list411 = f.read().splitlines()
@@ -33,15 +33,22 @@ twiceHitNotin1006 = bothin411and588342-set(listAll1006)
 falsePosin1006 = onlyin1006&set(listAll411)
 #Shall we consider the ones in only 1006 to be a false positive??, in that case::
 #falsePosin1006 = onlyin1006
+inactivein1006 = set(listAll1006) - set1006
+inactivein411 = set(listAll411) - set411
+active588342Inactive1006 = inactivein1006&set588342
+active588342Inactive1006Inactive411 = active588342Inactive1006&inactivein411
+
 allTwiceHits = twiceHitNotin1006|twiceHitNotin411|notin588342  #including the 12 members that tested negetive in 588342, because most likely they are false negetives.
 reproducibleMembers = allTwiceHits|hitForThree  #These are having 2/2 or 3/3 hits, 12 of them have 2/3, but counting them as false negetives.
-printcount(reproducibleMembers)
+#printcount(reproducibleMembers)
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
-printcount(set.union(set(listAll1006),set(listAll411),set(listAll588342)))
+#printcount(set.union(set(listAll1006),set(listAll411),set(listAll588342)))
 #print(len(hitForThree))
 #print(len(uniquein588342))
 #print(len(onlyin1006))
 
-
-venn3([set(list1006), set(list588342), set(list411)], ('AID1006', 'AID588342', 'AID411'))
-plt.show()
+if __name__ == "__main__":
+    pass
+    #venn2([active588342Inactive1006, inactivein411])
+    #venn3([set(list1006), set(list588342), set(list411)], ('AID1006', 'AID588342', 'AID411'))
+    #plt.show()

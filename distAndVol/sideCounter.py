@@ -18,8 +18,10 @@ from pymol import cmd
 import matplotlib.pyplot as plt
 import threading
 from dockingPipeline import pathCollections as pc
+from learning import pyDec
 #from pprint import pprint
 import pickle
+@pyDec.timeit
 def determineSide(inputFile, centerpos, normalvector):
     dot2Dlist = []
     for i in range(1, cmd.count_states(inputFile.split(".")[0])):
@@ -32,6 +34,7 @@ def determineSide(inputFile, centerpos, normalvector):
                 dotList.append(False)            
         dot2Dlist.append(dotList)
     return dot2Dlist
+@pyDec.timeit
 def determineDist(inputFile, pseudoAtomCoord):
     dist2Dlist = []
     for i in range(1, cmd.count_states(inputFile.split(".")[0])):
@@ -43,6 +46,7 @@ def determineDist(inputFile, pseudoAtomCoord):
         dist2Dlist.append(distList)
         #print dist2Dlist
     return dist2Dlist
+@pyDec.timeit
 def getCountAndPerc(superListAtomwise):
     counter = 0
     avgAtomInside = {}
