@@ -34,9 +34,9 @@ def extractVinaEn(vinaEnList, count, inputFile, pc):
             print inputFile + " is probably not a vinaOutput file, skipping" #pass
 
 vinaEnList = []
-for count,inputFile in enumerate(os.listdir(pc.vinaOutputDir)):
+for count,inputFile in enumerate(os.listdir(pc.customDir)):
     extractVinaEn(vinaEnList, count, inputFile, pc)
-with open(pc.basepath+pc.subpath+'vinaScore.pkl', 'wb') as fp:
+with open(pc.basepath+pc.subpath+'vinaScore_custom.pkl', 'wb') as fp:
     pickle.dump(vinaEnList, fp)
 plt.hist(vinaEnList, bins = 100)
 plt.show()

@@ -16,6 +16,7 @@ randomSelDir = basepath+ subpath+'randomSelection/'
 vinaOutputDir = basepath+ subpath+'vinaoutput/'
 vinaDoneDir = basepath+ subpath+'vinaDoneDir/'
 processErrorDir = basepath+ subpath+ 'processError/'
+customDir = basepath+'incorrInactives/'
 def createFolder(path):
     if not os.path.exists(path):
         os.makedirs(path)

@@ -18,10 +18,10 @@ from pymol import cmd
 import matplotlib.pyplot as plt
 import threading
 from dockingPipeline import pathCollections as pc
-from learning import pyDec
+
 #from pprint import pprint
 import pickle
-@pyDec.timeit
+
 def determineSide(inputFile, centerpos, normalvector):
     dot2Dlist = []
     for i in range(1, cmd.count_states(inputFile.split(".")[0])):
@@ -34,7 +34,7 @@ def determineSide(inputFile, centerpos, normalvector):
                 dotList.append(False)            
         dot2Dlist.append(dotList)
     return dot2Dlist
-@pyDec.timeit
+
 def determineDist(inputFile, pseudoAtomCoord):
     dist2Dlist = []
     for i in range(1, cmd.count_states(inputFile.split(".")[0])):
@@ -46,7 +46,7 @@ def determineDist(inputFile, pseudoAtomCoord):
         dist2Dlist.append(distList)
         #print dist2Dlist
     return dist2Dlist
-@pyDec.timeit
+
 def getCountAndPerc(superListAtomwise):
     counter = 0
     avgAtomInside = {}
@@ -100,8 +100,8 @@ avgList = []
 #cmd.load(pc.vinaOutputDir+inputFile)
 pseudoAtomCoord = cmd.get_coords("phem")
 processcount = 0
-totalcount = len(os.listdir(pc.vinaOutputDir))
-for inputFile in os.listdir(pc.vinaOutputDir):
+totalcount = len(os.listdir(pc.customDir))
+for inputFile in os.listdir(pc.customDir):
     processMolecules(os, pc, centerpos, np, normalvector, cmd, superListAtomwise, superDistList, lenList, avgList, pseudoAtomCoord, inputFile)
     processcount = processcount + 1
     print processcount
@@ -117,8 +117,8 @@ with open(subpath+'perclist_actives', 'wb') as fp:
 with open(subpath+'distlist_actives', 'wb') as fp:
     pickle.dump(avgList, fp)
 print 'done.'
-#plt.hist(percList, bins = 100)
-#plt.show()
+plt.hist(percList, bins = 100)
+plt.show()
 # plt.hist(avgList, bins = 100)
 # plt.show()
 
