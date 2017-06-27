@@ -12,11 +12,10 @@ from dockingPipeline.pathCollections import subpath
 #from distAndVol.determineCutoff import percList
 __main__.pymol_argv = [ 'pymol', '-qc']
 import os
-import numpy as np
 import pymol
 from pymol import cmd
+import numpy as np
 import matplotlib.pyplot as plt
-import threading
 from dockingPipeline import pathCollections as pc
 
 #from pprint import pprint
@@ -82,7 +81,7 @@ def processMolecules(os, pc, centerpos, np, normalvector, cmd, superListAtomwise
              #print (float(processcount/totalcount)*100)
         except:
             print "Unable to open to molecule, throwing into error and moving on"
-            os.rename(pc.vinaOutputDir + inputFile, pc.processErrorDir + inputFile)
+            #os.rename(pc.vinaOutputDir + inputFile, pc.processErrorDir + inputFile)
 os.chdir(pc.basepath)
 pc.createFolder(pc.processErrorDir)
 centerpos = np.array((12.5, 36.7,8.3))
@@ -100,8 +99,8 @@ avgList = []
 #cmd.load(pc.vinaOutputDir+inputFile)
 pseudoAtomCoord = cmd.get_coords("phem")
 processcount = 0
-totalcount = len(os.listdir(pc.customDir))
-for inputFile in os.listdir(pc.customDir):
+totalcount = len(os.listdir(pc.vinaOutputDir))
+for inputFile in os.listdir(pc.vinaOutputDir):
     processMolecules(os, pc, centerpos, np, normalvector, cmd, superListAtomwise, superDistList, lenList, avgList, pseudoAtomCoord, inputFile)
     processcount = processcount + 1
     print processcount
@@ -112,7 +111,7 @@ percList = []
 for v in percDict.values():
     percList.append(v)
     
-with open(subpath+'perclist_actives', 'wb') as fp:
+with open(subpath+'perclist_inactives', 'wb') as fp:
     pickle.dump(percDict, fp)
 with open(subpath+'distlist_actives', 'wb') as fp:
     pickle.dump(avgList, fp)
