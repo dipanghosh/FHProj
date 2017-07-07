@@ -3,7 +3,7 @@ Created on 31 May 2017
 
 @author: dghosh
 '''
-import vennDiag_ncorr_Analysis as vd
+from accuAnalysis import vennDiag_ncorr_Analysis as vd
 import os, shutil
 from matplotlib import pyplot as plt
 from dockingPipeline import pathCollections as pc
