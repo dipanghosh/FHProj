@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 from matplotlib_venn import venn3, venn2
 import xlrd
-import vennDiagAnalysis as vd
+from accuAnalysis import vennDiagAnalysis as vd
 import pandas as pd
 from learning import pyDec
 import pprint, os

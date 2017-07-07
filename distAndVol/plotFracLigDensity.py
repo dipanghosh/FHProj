@@ -36,7 +36,7 @@ sb.set_style('whitegrid')
 #sb.set_context("paper", rc={"font.size":18,"axes.titlesize":18,"axes.labelsize":15, "font_scale": 20})
 plot = sb.kdeplot(np.array(activeScoreList), bw=0.05, label = 'Actives')
 plot = sb.kdeplot(np.array(inactiveScoreList), bw=0.01, label = 'Inactives')
-plot = sb.kdeplot(np.array(inactiveScoreCustomList), bw=0.05, label = 'False Positives')
+#plot = sb.kdeplot(np.array(inactiveScoreCustomList), bw=0.05, label = 'False Positives')
 plot.set(xlim=(-11, -3))
 
 plt.show()
