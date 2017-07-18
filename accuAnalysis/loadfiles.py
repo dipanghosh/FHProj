@@ -21,3 +21,11 @@ with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem
     listAll588342 = f.read().splitlines()
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/AID588342/actives_incorrect_50') as f:
     set3Incorr50 = f.read().splitlines()
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLearning/aggregation/set3_50_aggre_SID') as f:
+    set3Aggre50 = f.read().splitlines()
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLearning/set1RID.csv') as f:
+    set1RID = f.read().splitlines()
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLearning/set2RID.csv') as f:
+    set2RID = f.read().splitlines()
+with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLearning/set3RID.csv') as f:
+    set3RID = f.read().splitlines()
