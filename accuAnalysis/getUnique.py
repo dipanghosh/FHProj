@@ -1,10 +1,10 @@
-#from accuAnalysis import loadfiles as ld
+from accuAnalysis import loadfiles as ld
 from matplotlib import pyplot as plt
 from matplotlib_venn import venn3, venn2
 from dipan_utilities import utilities
-set1dict = utilities.csvToDict('/Users/dghosh/Downloads/411_unique_1006.csv')
-set2dict = utilities.csvToDict('/Users/dghosh/Downloads/1006_fluc_activity.csv')
-set3dict = utilities.csvToDict('/Users/dghosh/Downloads/set3.csv')
+set1dict = ld.set1dict
+set2dict = ld.set2dict
+set3dict = ld.set3dict
 
 set1idSet = set(set1dict.keys())
 set2idSet = set(set2dict.keys())
@@ -13,9 +13,7 @@ uniq1to2 = set1idSet - set2idSet
 uniq1to3 = set1idSet - set3idSet
 uniq2to1 = set2idSet - set1idSet
 uniq3to1 = set3idSet - set1idSet
-print len(set3dict)
-venn3([set1idSet, set2idSet, set3idSet])
-plt.show()
+
 def extractList(idlist, mydict):
     mylist = []
     for id in idlist:

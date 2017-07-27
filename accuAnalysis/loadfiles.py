@@ -3,6 +3,9 @@ Created on 27 Jun 2017
 @author: dghosh
 Loads and manages all files for accuracy analysis
 '''
+desktopDir = '/Users/dghosh/Desktop/'
+
+from dipan_utilities import utilities
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/AID411/411_11.5um_actives') as f:
     list411 = f.read().splitlines()
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem/SIDLists/411ActiveSIDList') as f:
@@ -25,3 +28,8 @@ with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/DataMining/PubChem
     set3Incorr50 = f.read().splitlines()
 with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLearning/aggregation/set3_50_aggre_SID') as f:
     set3Aggre50 = f.read().splitlines()
+
+
+set1dict = utilities.csvToDict('/Users/dghosh/Downloads/411_unique_1006.csv')
+set2dict = utilities.csvToDict('/Users/dghosh/Downloads/1006_fluc_activity.csv')
+set3dict = utilities.csvToDict('/Users/dghosh/Downloads/set3.csv')
