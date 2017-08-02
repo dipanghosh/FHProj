@@ -13,6 +13,8 @@ uniq1to2 = set1idSet - set2idSet
 uniq1to3 = set1idSet - set3idSet
 uniq2to1 = set2idSet - set1idSet
 uniq3to1 = set3idSet - set1idSet
+uniq2to3 = set2idSet - set3idSet
+uniq3to2 = set3idSet - set2idSet
 
 def extractList(idlist, mydict):
     mylist = []

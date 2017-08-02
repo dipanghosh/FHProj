@@ -44,8 +44,10 @@ def calculateBalAccforSets(i, j):
     activeinCommon = float(intersectionByIndex(i, j, givefullset=False))
     totalinCommon = float(intersectionByIndex(i, j, givefullset=True))
     inactiveinCommon = totalinCommon - activeinCommon
-    balAcc = 0.5 * ((switched[0] / activeinCommon) + switched[1] / inactiveinCommon)
-    return balAcc
+    TP = activeinCommon - switched[0]
+    TN = inactiveinCommon - switched[1]
+    balAcc = 0.5 * ((TP / (TP + switched[0])) + (TN/ (TN + switched[1])))
+    print balAcc
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ def csvToDict(filename):
     reader = csv.reader(open(filename, 'r'))
     dict = {}
     for row in reader:
-       _, v, k = row
+       v, _, k = row
        dict[k] = v
     return dict
 
@@ -19,3 +19,12 @@ def pullFromDictAndWriteToFIle(yourDict, yourSet, yourFile):
             yourFile.write(yourDict[id] + '\n')
         except:
             pass
+
+def extractList(idlist, mydict):
+    mylist = []
+    for id in idlist:
+        try:
+            mylist.append(mydict[id])
+        except KeyError:
+            print id + " Key does not exist here!"
+    return mylist
