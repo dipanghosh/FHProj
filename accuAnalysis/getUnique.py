@@ -26,6 +26,7 @@ uniq1to2l = extractList(uniq1to2, set1dict)
 uniq1to3l = extractList(uniq1to3, set1dict)
 uniq2to1l = extractList(uniq2to1, set2dict)
 uniq3to1l = extractList(uniq3to1, set3dict)
+uniq3to2l = extractList(uniq2to3, set2dict)
 
 
 # print len(uniq1to2)
@@ -36,4 +37,4 @@ uniq3to1l = extractList(uniq3to1, set3dict)
 # utilities.listToFile('/Users/dghosh/Desktop/uniq1to2.csv', uniq1to2l)
 # utilities.listToFile('/Users/dghosh/Desktop/uniq1to3.csv', uniq1to3l)
 # utilities.listToFile('/Users/dghosh/Desktop/uniq2to1.csv', uniq2to1l)
-# utilities.listToFile('/Users/dghosh/Desktop/uniq3to1.csv', uniq3to1l)
+utilities.listToFile('/Users/dghosh/Desktop/uniq3to1.csv', uniq3to2l)
