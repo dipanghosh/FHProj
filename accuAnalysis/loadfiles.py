@@ -33,3 +33,5 @@ with open('/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Analysis/MachineLe
 set1dict = utilities.csvToDict('/Users/dghosh/Downloads/411_unique_1006.csv')
 set2dict = utilities.csvToDict('/Users/dghosh/Downloads/1006_fluc_activity.csv')
 set3dict = utilities.csvToDict('/Users/dghosh/Downloads/set3.csv')
+set3inconclusivedict = utilities.csvToDict('/Users/dghosh/Downloads/588342_inconclusive.csv')
+set1inconclusivedict = utilities.csvToDict("/Users/dghosh/Downloads/set1_inconclusive.csv")
