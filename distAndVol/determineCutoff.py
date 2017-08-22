@@ -7,8 +7,8 @@ Created on 16 Mar 2017
 
 '''
 from dockingPipeline import pathCollections as pc
-import os
-import pickle
+import os, pickle
+import numpy as np
 
 def dictTolist(dict):
     mylist = []
@@ -18,31 +18,24 @@ def dictTolist(dict):
 os.chdir(pc.basepath)
 
 def calcAccuracy(list, list_actives, cutoff):
-    falseInactives = sum(x >= cutoff for x in list)
-    trueInactives = sum(x < cutoff for x in list)
-    trueActives = sum(x >= cutoff for x in list_actives)
-    falseActives = sum(x < cutoff for x in list_actives)
-    #print falseInactives, trueInactives
-    BalAcc = 0.5 * (float(trueActives) / (trueActives + falseActives) + float(trueInactives) / (trueInactives + falseInactives))
-    print BalAcc
-    #print 'For cutoff %f balanced accuracy %f' %(cutoff, BalAcc)
-    print 'Accuracy of Inactives',
-    print float(trueInactives) / len(percList)
-    print 'Accuracy of Actives',
-    print float(trueActives) / len(percList_active)
-    #print 0.5*((float(trueInactives) / len(percList))+(float(trueActives) / len(percList_active)))
+    #print "The current cutoff is     "+ str(cutoff)
+    falseInactives = sum(x <= cutoff for x in list)
+    trueInactives = len(list) - falseInactives
+    trueActives = sum(x <= cutoff for x in list_actives)
+    falseActives = len(list_actives) - trueActives
+    balacc = 0.5*((float(trueInactives) / len(list))+(float(trueActives) / len(list_actives)))
+    return (cutoff, falseInactives, trueInactives, falseActives, trueActives, balacc)
+
 os.chdir(pc.basepath+pc.subpath)
-perccutoffList = [x * 0.01 for x in range(10, 100)]
-#distcutoffList = [x * 0.01 for x in range(400, 800)]
-with open (pc.basepath+pc.subpath+'perclist_inactives', 'rb') as fp:
+perccutoffList = np.arange(0.3500, 0.4500, 0.01)
+
+with open (pc.basepath+'/actives/perclist_actives', 'rb') as fp:
     percList = dictTolist(pickle.load(fp))
-#with open ('distlist', 'rb') as fp:
-    #distlist = pickle.load(fp)
-with open (pc.basepath+pc.subpath+'perclist_actives', 'rb') as fp:
+
+with open (pc.basepath+'/inactives/perclist_inactives', 'rb') as fp:
     percList_active = dictTolist(pickle.load(fp))
-#with open ('distlist_actives', 'rb') as fp:
-    #distlist_actives = pickle.load(fp)
-for perccutoff in perccutoffList:
-    calcAccuracy(percList, percList_active, perccutoff)
-#for distcutoff in distcutoffList:
-    #calcAccuracy(distlist, distlist_actives, distcutoff)
+
+
+if __name__ == "__main__":
+    for perccutoff in perccutoffList:
+        print calcAccuracy(percList, percList_active, perccutoff)
