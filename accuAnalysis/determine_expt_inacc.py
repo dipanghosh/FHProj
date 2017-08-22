@@ -47,8 +47,25 @@ def calculateBalAccforSets(i, j):
     TP = activeinCommon - switched[0]
     TN = inactiveinCommon - switched[1]
     balAcc = 0.5 * ((TP / (TP + switched[0])) + (TN/ (TN + switched[1])))
-    print balAcc
+    return balAcc
+
+def inaccAsBoolToList(i,j):
+    switched = compareSets(i,j)
+    activeinCommon = (intersectionByIndex(i, j, givefullset=False))
+    totalinCommon = (intersectionByIndex(i, j, givefullset=True))
+    inactiveinCommon = totalinCommon - activeinCommon
+    TP = activeinCommon - switched[0]
+    TN = inactiveinCommon - switched[1]
+    activelist = [0]* TP
+    activelist = activelist + [1]*switched[0]
+    inactivelist = [0] * TN
+    inactivelist = inactivelist + [1] * switched[1]
+    return (activelist, inactivelist)
+
+
 
 
 if __name__ == '__main__':
-    print 100 - (100 * calculateBalAccforSets(0, 1))
+    pass
+    #print (100 * calculateBalAccforSets(1, 2))
+    #inaccAsBoolToList(1,2)
