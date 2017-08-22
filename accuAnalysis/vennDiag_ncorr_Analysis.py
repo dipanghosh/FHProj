@@ -1,11 +1,10 @@
-from matplotlib import pyplot as plt
-from matplotlib_venn import venn3, venn2
-import xlrd
-from accuAnalysis import vennDiagAnalysis as vd
-import pandas as pd
-from learning import pyDec
-import pprint, os
+import os
 import pickle
+
+import xlrd
+from matplotlib import pyplot as plt
+
+
 #print list588342
 def printcount(o):
     print len(o)
