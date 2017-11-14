@@ -1,0 +1,4 @@
+class namedlist(list):
+    listname = ""
+
+

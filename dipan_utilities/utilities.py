@@ -8,8 +8,8 @@ def csvToDict(filename):
     reader = csv.reader(open(filename, 'r'))
     dict = {}
     for row in reader:
-       v, k, _ = row
-       dict[k] = v
+        v, k, _= row[0], row[1], row[2:]
+        dict[k] = v
     return dict
 
 
