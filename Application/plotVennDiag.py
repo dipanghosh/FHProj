@@ -1,22 +1,29 @@
 import os, csv, sys
-from matplotlib_venn import venn3, venn2
-from matplotlib import gridspec
+from matplotlib_venn import venn3, venn2, venn2_unweighted
+from dipan_utilities import utilities
 from matplotlib import pyplot as plt
-dataDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Application/Data/Pubchem/bigAssayOthers/'
+dataDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Application/Data/Pubchem/AllData/BigData/'
+plt.rcParams['svg.fonttype'] = 'none'
+plt.figure(figsize=(25 ,25))
 
-def csvToSet(filename):
-    reader = csv.reader(open(filename, 'r'))
-    mylist = [row[1] for row in reader]
-    return set(mylist)
 
-fig = plt.figure()
+
 vennlist = []
-constSet = csvToSet(dataDir + os.listdir(dataDir)[1])
-for i, myfile in enumerate(os.listdir(dataDir)):
-    comparisonSet = csvToSet(dataDir+myfile)
-    venn2((constSet, comparisonSet), set_labels=(os.listdir(dataDir)[1], myfile))
-    plt.subplot(3, 4,i+1)
-plt.show()
+constSet = utilities.csvToSet(utilities.findCSVFiles(dataDir)[5])
+filecount = len(utilities.findCSVFiles(dataDir))
+
+for i, myfile in enumerate(utilities.findCSVFiles(dataDir)):
+    if myfile.endswith(".csv"):
+        if i == filecount: i-=1
+        else: i +=1
+        plt.subplot(filecount / 4, 5, i)
+        comparisonSet = utilities.csvToSet(myfile)
+        figure = venn2((constSet, comparisonSet), set_labels=("", ""))
+plt.savefig("venn-diag.svg")
+
+
+#plt.show()
+
 
 
 

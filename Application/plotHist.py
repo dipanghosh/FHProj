@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pickle
 import getActives as gt
+import bootstrap
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from dipan_utilities import utilities
 
@@ -14,20 +15,23 @@ minorLocator = MultipleLocator(0.01)
 #timetimesTested
 #timesPositive = [gt.determineFreq(compound)[2] for compound in gt.dictofallCompounds.keys()]
 
-print len(gt.listofallCompounds)
+#print len(gt.listofallCompounds)
 
-freq = [gt.determineFreq(compound)[3] for compound in gt.dictofallCompounds.keys() if gt.determineFreq(compound)[1]>2]
+freq = gt.freq
+
+freqboot = bootstrap.navgFreqList
 
 #utilities.dumpToPickle("freq.p", freq)
 
-#freq = pickle.load(open("freq.p"))
+
 #plot = sb.kdeplot(np.array(timesTested), bw=0.5, label = 'Times Tested')
 #plot = sb.kdeplot(np.array(timesActive), bw=0.5, label = 'Times Active')
 #plot = sb.kdeplot(np.array(freq), bw=0.0005, label = 'Frequency')
 
 fig, ax = plt.subplots()
 
-plt.hist(freq, bins = 20, log=True)
+plt.hist(freq, bins = 20, log=True,  alpha=0.5)
+plt.hist(freqboot, bins = 20, log=True,  alpha=0.5)
 
 
 ax.xaxis.set_major_locator(majorLocator)

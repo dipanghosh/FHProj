@@ -1,7 +1,18 @@
-import csv
+import csv,os
 import pickle
 
+
 desktopDir = '/Users/dghosh/Desktop/'
+
+
+def csvToSet(filename):
+    try:
+        reader = csv.reader(open(filename, 'r'))
+        mylist = [row[0] for row in reader]
+        return set(mylist)
+    except:
+        pass
+
 
 
 def csvToDict(filename):
@@ -16,7 +27,7 @@ def csvToDict(filename):
 def listToFile(filename, listname):
     with open(filename, 'w') as f:
         for line in listname:
-            f.write(line+'\n')
+            f.write(str(line)+'\n')
 
 
 def pullFromDictAndWriteToFIle(yourDict, yourSet, yourFile):
@@ -38,5 +49,21 @@ def extractList(idlist, mydict):
 
 
 def dumpToPickle(filename, object):
-    with open(desktopDir+filename, 'wb') as fp:
+    with open(filename, 'wb') as fp:
         pickle.dump(object, fp)
+
+def findCSVFiles(path):
+    csvfiles = [os.path.join(root, name)
+                 for root, dirs, files in os.walk(path)
+                 for name in files
+                 if name.endswith(("csv"))]
+    return csvfiles
+
+def plotVenn(setList):
+    from matplotlib_venn import venn3, venn2
+    from matplotlib import pyplot as plt
+    if len(setList) == 2:
+        venn2(setList)
+    if len(setList) == 3:
+        venn3(setList)
+    plt.show()

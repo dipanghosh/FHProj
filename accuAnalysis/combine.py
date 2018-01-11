@@ -1,6 +1,7 @@
-from dipan_utilities import utilities
+from dipan_utilities import utilities, namedList
 import getUnique as gt
 import exportOverlaps as ex
+
 
 overlaps13 = ex.exportOverlaps(0, 2)
 overlaps23 = ex.exportOverlaps(1, 2)
@@ -19,9 +20,13 @@ set3list = utilities.extractList(gt.set3idSet, gt.set3dict)
 uniqFromSet1 = utilities.extractList(gt.uniq1to3, gt.set1dict)
 uniqFromSet2 = utilities.extractList(gt.uniq2to3, gt.set2dict)
 
-combined = set.union(set(set3list), set(uniqFromSet1), set(uniqFromSet2))
+#combined = set.union(set(set3list), set(uniqFromSet1), set(uniqFromSet2))
 
 
-combinedExcludeSwitching =(set(switchersForset1)|set(switchersForset2)|set(switchersForset2and1)|set(switchersForset2and1From1))
-print len(combinedExcludeSwitching)
-utilities.listToFile(desktopDir+'toExclude.txt', combinedExcludeSwitching)
+#combinedExcludeSwitching =(set(switchersForset1)|set(switchersForset2)|set(switchersForset2and1)|set(switchersForset2and1From1))
+#print len(combinedExcludeSwitching)
+#utilities.listToFile(desktopDir+'toExclude.txt', combinedExcludeSwitching)
+
+utilities.listToFile(desktopDir+'set3List.csv', set3list)
+utilities.listToFile(desktopDir+'uniqfromset1.csv', uniqFromSet1)
+utilities.listToFile(desktopDir+'uniqfromset2.csv', uniqFromSet2)
