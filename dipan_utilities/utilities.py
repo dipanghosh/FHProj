@@ -67,3 +67,33 @@ def plotVenn(setList):
     if len(setList) == 3:
         venn3(setList)
     plt.show()
+
+def getSingleStrFromPubchem(SID):
+    import pubchempy as pcp
+    return pcp.Substance.from_sid(SID).standardized_compound.isomeric_smiles
+
+def getSmilesFromPubchem(CIDList, renameDict = {}, addCol = {}):
+    import pubchempy as pcp
+    smilesDF = (pcp.get_properties('IsomericSMILES', CIDList, as_dataframe=True))
+    if renameDict:
+        smilesDF = smilesDF.rename(columns=renameDict)
+        smilesDF.drop(smilesDF.index[0])
+    if addCol:
+        for i in addCol.keys():
+            smilesDF[i] = addCol[i]
+
+    return smilesDF
+
+
+def viewTable(table):
+    import webbrowser
+    # Create a web page view of the data for easy viewing
+    html = table.to_html()
+
+    # Save the html to a temporary file
+    with open("data.html", "w") as f:
+        f.write(html)
+
+    # Open the web page in our web browser
+    full_filename = os.path.abspath("data.html")
+    webbrowser.open("file://{}".format(full_filename))

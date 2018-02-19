@@ -4,7 +4,7 @@ from dipan_utilities import utilities
 from collections import Counter
 import unittest
 
-bInDataDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Application/Data/Pubchem/AllData/BigData-curated/inhibition/'
+bInDataDir = '/Users/dghosh/Desktop/FreqHitterProject/Alphascreen/Data/public/'
 
 listofAllactives = []
 listofallCompounds = []
@@ -69,14 +69,10 @@ def determineFreq(compound):
 
 def determineFreqHits(compound):
     compound,timesTested,timesPositive, freq, compound_signature = determineFreq(compound)
-    if (len(compound_signature)> 2 and freq >0.4):
+    if (len(compound_signature)> 4 and freq >0.5):
         print compound, compound_signature
         return compound
 
-    # if not (len(compound_signature) == 1):
-    #      if not (len(compound_signature) == 2 and (freq == 0.5 or freq == 1)):
-    #         if freq > 0.4:
-    #             return compound
 
 
 collectFromAllCsv()
@@ -101,7 +97,7 @@ if __name__ == "__main__":
     print len(freqhitterList)
     print len(listofAllactives)
 
-    utilities.listToFile(bInDataDir + "freqHitterList", set(freqhitterList))
+    utilities.dumpToPickle("getactivesOut", (listofAllactives, freqhitterList))
 
 
 

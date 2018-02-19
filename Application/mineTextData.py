@@ -4,8 +4,8 @@ from dipan_utilities import utilities
 
 
 
-dataDir = '/Users/dghosh/Desktop/FreqHitterProject/Luciferase/Application/Data/Pubchem/'
-filename = dataDir+'mined'
+dataDir = '/Users/dghosh/Desktop/'
+filename = '/Users/dghosh/Desktop/pcassay_result.txt'
 
 class assaydata:
     source = 'source unknown'
@@ -13,6 +13,7 @@ class assaydata:
     activity = ''
     aid = 'Pubchem AssayID'
     date = ''
+    protocol = ''
 
 def createEntry(mylist):
     assayEntry = assaydata()
@@ -26,7 +27,6 @@ def createEntry(mylist):
         elif element.__contains__('Target'):
             assayEntry.target = element
         else: pass
-    assayEntry.date = headless.getDepositDate(str.strip(assayEntry.aid.split(':')[1]))
     return assayEntry
 
 
