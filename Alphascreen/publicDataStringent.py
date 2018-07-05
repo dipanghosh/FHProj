@@ -4,12 +4,13 @@ from dipan_utilities import utilities
 import analysePublicData as an
 import pickle
 
-dataDir = "/Users/dghosh/Desktop/FreqHitterProject/Alphascreen/Data/public"
+dataDir = "E:\FreqHitterProject\Alphascreen\Data\public"
 fileList = utilities.findCSVFiles(dataDir)
-listofAllactives, freqhitterList = pickle.load(open("getactivesOut"))
-
+with open("getactivesOut", 'rb') as f:
+    listofAllactives, freqhitterList = pickle.load(f)
 
 dFList = [pd.read_csv(csvfile) for csvfile in fileList]
+
 
 masterList = pd.concat(dFList)
 

@@ -3,7 +3,8 @@ import numpy as np
 from dipan_utilities import utilities
 import itertools, collections
 
-fileList = utilities.findCSVFiles("/Users/dghosh/Desktop/FreqHitterProject/Alphascreen/Data/public")
+fileList = utilities.findCSVFiles("E:\FreqHitterProject\Alphascreen\Data\public")
+
 
 def extractIDList(filePath):
     mydf = pd.read_csv(filePath)
