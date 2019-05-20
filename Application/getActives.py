@@ -2,7 +2,6 @@ import csv,os
 import operator
 from dipan_utilities import utilities
 from collections import Counter
-import unittest
 
 bInDataDir = '/Users/dghosh/Desktop/FreqHitterProject/Alphascreen/Data/public/'
 

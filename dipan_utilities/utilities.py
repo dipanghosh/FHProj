@@ -35,7 +35,7 @@ def pullFromDictAndWriteToFIle(yourDict, yourSet, yourFile):
         try:
             yourFile.write(yourDict[id] + '\n')
         except:
-            print "Failed to transform for " + id
+            print ("Failed to transform for " + id)
 
 
 def extractList(idlist, mydict):
@@ -44,7 +44,7 @@ def extractList(idlist, mydict):
         try:
             mylist.append(mydict[id])
         except KeyError:
-            print id + " Key does not exist here!"
+            print (id + " Key does not exist here!")
     return mylist
 
 
@@ -72,7 +72,21 @@ def getSingleStrFromPubchem(SID):
     import pubchempy as pcp
     return pcp.Substance.from_sid(SID).standardized_compound.isomeric_smiles
 
-def getSmilesFromPubchem(CIDList, renameDict = {}, addCol = {}):
+def getSmilesFromPubchem(CIDList):
+    import requests
+    import pandas as pd
+    cid_chunks = list(chunks(CIDList, 200))
+    dflist = []
+    for chunk in cid_chunks:
+        cids = ",".join(chunk)
+        response = requests.get ("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"+cids+"/property/CanonicalSMILES/CSV")
+        smiles_strings = response.content.decode("utf-8").split("\n")
+        df = pd.DataFrame([sub.replace('\"',"").split(",") for sub in smiles_strings[1:len(smiles_strings)-1]], columns=["CID", "SMILES"])
+        dflist.append(df)
+    return pd.concat(dflist)
+
+
+def pcp_getSmilesFromPubchem(CIDList, renameDict = {}, addCol = {}):
     import pubchempy as pcp
     smilesDF = (pcp.get_properties('IsomericSMILES', CIDList, as_dataframe=True))
     if renameDict:
@@ -97,3 +111,9 @@ def viewTable(table):
     # Open the web page in our web browser
     full_filename = os.path.abspath("data.html")
     webbrowser.open("file://{}".format(full_filename))
+
+def chunks(l, n):
+    # For item i in a range that is a length of l,
+    for i in range(0, len(l), n):
+        # Create an index range for l of n items:
+        yield l[i:i+n]
