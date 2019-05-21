@@ -75,14 +75,17 @@ def getSingleStrFromPubchem(SID):
 def getSmilesFromPubchem(CIDList):
     import requests
     import pandas as pd
+    import time
+    from tqdm import tqdm
     cid_chunks = list(chunks(CIDList, 200))
     dflist = []
-    for chunk in cid_chunks:
+    for chunk in tqdm(cid_chunks):
         cids = ",".join(chunk)
         response = requests.get ("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/"+cids+"/property/CanonicalSMILES/CSV")
         smiles_strings = response.content.decode("utf-8").split("\n")
         df = pd.DataFrame([sub.replace('\"',"").split(",") for sub in smiles_strings[1:len(smiles_strings)-1]], columns=["CID", "SMILES"])
         dflist.append(df)
+        time.sleep(2)
     return pd.concat(dflist)
 
 
